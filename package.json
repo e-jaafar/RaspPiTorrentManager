@@ -1,0 +1,24 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.8.1",
+    "buffer": "^6.0.3",
+    "discord.js": "^14.17.3",
+    "dotenv": "^16.4.7",
+    "form-data": "^4.0.2",
+    "fs-extra": "^11.3.0",
+    "path": "^0.12.7",
+    "qbit.js": "^2.1.4",
+    "qbittorrent-api": "^1.0.0"
+  },
+  "type": "module"
+}
