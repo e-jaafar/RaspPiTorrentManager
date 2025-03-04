@@ -61,16 +61,97 @@ RaspPiTorrentManager is a Discord bot that allows you to remotely manage your qB
 - **Discord Permissions** : Only the user specified in `DISCORD_USER_ID` can execute commands.
 - **Firewall** : Ensure the SSH port is secure and only necessary ports are open.
 
-## Contributing
-
-Contributions are welcome! Open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ---
+
+## Discord Notify Script
+
+The `discord_notify.sh` script is a utility for sending notifications to Discord when your Raspberry Pi starts, shuts down, or reboots. It also provides system status information such as CPU temperature, disk usage, and uptime.
+
+### **Features**
+- **Startup Notification** : Sends a message when the Pi boots up, including downtime since the last shutdown.
+- **Shutdown Notification** : Sends a message when the Pi shuts down, including uptime before shutdown.
+- **Reboot Notification** : Sends a message before rebooting the Pi.
+- **System Status** : Includes CPU temperature, disk usage, and IP address in notifications.
+
+### **Configuration**
+1. **Create a `.env` file** :
+   - Add the following variables to a `.env` file in the same directory as the script:
+     ```env
+     # Discord Webhook URL
+     WEBHOOK_URL=https://discord.com/api/webhooks/your_webhook_url
+
+     # Log File Path
+     LOG_FILE=/path/to/pi_status.log
+     ```
+
+2. **Set up the script** :
+   - Make the script executable:
+     ```bash
+     chmod +x discord_notify.sh
+     ```
+
+3. **Add the script to system services** :
+   - For startup notifications, add the script to `/etc/rc.local`:
+     ```bash
+     /path/to/discord_notify.sh allumé &
+     ```
+   - For shutdown notifications, create a systemd service or use a shutdown hook.
+
+4. **Test the script** :
+   - Run the script manually to test it:
+     ```bash
+     ./discord_notify.sh allumé
+     ./discord_notify.sh éteint
+     ./discord_notify.sh reboot
+     ```
+
+### **Usage**
+- **Startup** : Automatically sends a notification when the Pi boots up.
+- **Shutdown** : Automatically sends a notification when the Pi shuts down.
+- **Reboot** : Sends a notification and reboots the Pi.
+
+### **Example Notifications**
+- **Startup** :
+  ```
+  🟢 **Raspberry Pi allumé**
+  - Heure: 02/03/2024 14:30:00
+  - Temps d'arrêt: 02h 15m 30s
+  - Uptime: 5 minutes
+  - CPU: 45°C
+  - HDD: 25% used (50GB/200GB)
+  - IP: 192.168.1.100
+  ```
+
+- **Shutdown** :
+  ```
+  🔴 **Raspberry Pi éteint**
+  - Heure: 02/03/2024 15:00:00
+  - Uptime précédent: 30 minutes
+  - CPU: 50°C
+  - HDD: 25% used (50GB/200GB)
+  ```
+
+- **Reboot** :
+  ```
+  🔄 **Raspberry Pi redémarrage**
+  - Heure: 02/03/2024 15:05:00
+  - Uptime: 35 minutes
+  Le système va redémarrer dans 5 secondes...
+  ```
+
+### **Dependencies**
+- `curl` : For sending HTTP requests to Discord.
+- `jq` : For formatting JSON data.
+
+Install them with:
+```bash
+sudo apt install curl jq
+```
+
+### **License**
+This script is open-source and available under the [MIT License](LICENSE).
+
 
 ## Author
 
-[Jaafar](https://github.com/your-username)
+[Jaafar](https://github.com/e-jaafar)
