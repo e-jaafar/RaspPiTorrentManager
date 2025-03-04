@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "DiscordBot",
+      "name": "RaspPiTorrentManager",
       "script": "bot.js",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "out_file": "/dev/null",
