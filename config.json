@@ -1,0 +1,56 @@
+{
+  "bot": {
+    "autoCleanInterval": 0,
+    "maxConcurrentDownloads": 5,
+    "defaultSavePath": "/mnt/jaaf_hdd/torrents",
+    "notifyOnComplete": true,
+    "autoReconnectInterval": 300000,
+    "logFile": "/home/Jaafar/.pm2/logs/DiscordBot-out.log",
+    "progressNotifications": {
+      "enabled": true,
+      "thresholds": [
+        25,
+        50,
+        75
+      ],
+      "minSize": 100000000
+    },
+    "dailySummary": {
+      "enabled": true,
+      "time": "23:00",
+      "channelId": "LOG_CHANNEL_ID"
+    },
+    "diskSpace": {
+      "enabled": true,
+      "warnThreshold": 90,
+      "checkInterval": 3600000
+    },
+    "detailedView": {
+      "enabled": true,
+      "showPeers": false,
+      "showFiles": true,
+      "showTrackers": false,
+      "graphColors": {
+        "progress": "#00FF00",
+        "speed": "#0099FF",
+        "peers": "#FF9900"
+      },
+      "updateInterval": 120000
+    }
+  },
+  "pm2": {
+    "name": "DiscordBot",
+    "script": "bot.js",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "out_file": "/home/Jaafar/.pm2/logs/DiscordBot-out.log",
+    "error_file": "/home/Jaafar/.pm2/logs/DiscordBot-error.log",
+    "merge_logs": true,
+    "log_type": "json",
+    "autorestart": true,
+    "watch": false,
+    "max_memory_restart": "1G",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}
